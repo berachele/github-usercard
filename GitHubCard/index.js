@@ -1,11 +1,12 @@
 /* Step 1: using axios, send a GET request to the following URL 
-           (replacing the palceholder with your Github name):
+           (replacing the placeholder with your Github name):
            https://api.github.com/users/<your name>
 */
+axios.get(https://api.github.com/users/berachele)
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
-   data in order to use it to build your component function 
+   data in order to use it to build your component function ✅
 
    Skip to Step 3.
 */
@@ -45,6 +46,29 @@ const followersArray = [];
 </div>
 
 */
+function createCard(object){
+  const card = document.createElement('div') //parent of all--specifically img and card-info
+  const image = document.createElement('img')
+  const cardInfo = document.createElement('div')//parent of h3 and p's
+  const name = document.createElement('h3')
+  const username = document.createElement('p')
+  const location = document.createElement('p')
+  const profile = document.createElement('p')//parent of gitLink
+  const gitLink = document.createElement('a') //child of profile
+  const followers = document.createElement('p')
+  const following = document.createElement('p')
+  const bio = document.createElement('p')
+   
+
+  //classes
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  name.classList.add('name')
+  username.classList.add('username')
+  
+
+  return card
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
