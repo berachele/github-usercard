@@ -2,8 +2,17 @@
            (replacing the placeholder with your Github name):
            https://api.github.com/users/<your name>
 */
-axios.get(https://api.github.com/users/berachele)
-
+axios.get('https://api.github.com/users/berachele')
+//.then console log your response to see your data!
+.then(response => {
+  console.log(response)
+  // response.data.forEach(item => {
+  //   //this is where I put parent.append(createCard(item))
+  // })
+})
+.catch(error => {
+  console.log('THE DATA WAS NOT RETURNED', error)
+})
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function ✅
@@ -47,25 +56,35 @@ const followersArray = [];
 
 */
 function createCard(object){
-  const card = document.createElement('div') //parent of all--specifically img and card-info
-  const image = document.createElement('img')
-  const cardInfo = document.createElement('div')//parent of h3 and p's
-  const name = document.createElement('h3')
-  const username = document.createElement('p')
-  const location = document.createElement('p')
-  const profile = document.createElement('p')//parent of gitLink
-  const gitLink = document.createElement('a') //child of profile
-  const followers = document.createElement('p')
-  const following = document.createElement('p')
-  const bio = document.createElement('p')
-   
-
+  const card = document.createElement('div'), //parent of all--specifically img and card-info
+        image = document.createElement('img'),
+        cardInfo = document.createElement('div'),//parent of h3 and p's
+        name = document.createElement('h3'),
+        username = document.createElement('p'),
+        location = document.createElement('p'),
+        profile = document.createElement('p'),//parent of gitLink
+        gitLink = document.createElement('a'), //child of profile
+        followers = document.createElement('p'),
+        following = document.createElement('p'),
+        bio = document.createElement('p');
   //classes
   card.classList.add('card')
   cardInfo.classList.add('card-info')
   name.classList.add('name')
   username.classList.add('username')
-  
+  //structuring--into parents
+  card.append(image, cardInfo)
+  cardInfo.append(name, username, location, profile, followers, following, bio)
+  profile.append(gitLink)
+  //textcontent/src
+  image.src = object.avatar_url
+  name.textContent = object.name
+  username.textContent = object.login
+  location.textContent = object.location
+  gitLink.textContent = object.url
+  followers.textContent = object.followers
+  following.textContent = object.following
+  bio.textContent = object.bio
 
   return card
 }
