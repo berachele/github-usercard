@@ -6,9 +6,7 @@ axios.get('https://api.github.com/users/berachele')
 //.then console log your response to see your data!
 .then(response => {
   console.log(response)
-  // response.data.forEach(item => {
-  //   //this is where I put parent.append(createCard(item))
-  // })
+  cards.append(createCard(response.data))
 })
 .catch(error => {
   console.log('THE DATA WAS NOT RETURNED', error)
@@ -20,9 +18,11 @@ axios.get('https://api.github.com/users/berachele')
    Skip to Step 3.
 */
 
-/* Step 4: Pass the data received from Github into your function, 
-           create a new component and add it to the DOM as a child of .cards
+/* Step 4: Pass the data received from Github into your function, ✅
+           create a new component and add it to the DOM as a child of .cards ✅
 */
+const cards = document.querySelector('.cards')
+
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -36,8 +36,8 @@ axios.get('https://api.github.com/users/berachele')
 
 const followersArray = [];
 
-/* Step 3: Create a function that accepts a single object as its only argument,
-          Using DOM methods and properties, create a component that will return the following DOM element:
+/* Step 3: Create a function that accepts a single object as its only argument, ✅
+          Using DOM methods and properties, create a component that will return the following DOM element: ✅
 
 <div class="card">
   <img src={image url of user} />
@@ -80,11 +80,11 @@ function createCard(object){
   image.src = object.avatar_url
   name.textContent = object.name
   username.textContent = object.login
-  location.textContent = object.location
-  gitLink.textContent = object.url
-  followers.textContent = object.followers
-  following.textContent = object.following
-  bio.textContent = object.bio
+  location.textContent = `Location: ${object.location}`
+  gitLink.textContent = `Profile: ${object.html_url}`
+  followers.textContent = `Followers: ${object.followers}`
+  following.textContent = `Following: ${object.following}`
+  bio.textContent = `Bio: ${object.bio}`
 
   return card
 }
