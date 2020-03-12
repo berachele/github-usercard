@@ -41,16 +41,19 @@ const followersArray = [
   'HunterStevens'
 ]; //how do I pass in my followersArray??
 
-axios.get('https://api.github.com/users/berachele/followers')
+//loop containing my followersArray
+for(let i = 0; i < followersArray.length; i++){
+axios.get('https://api.github.com/users/' + followersArray[i])
 .then(response => {
   console.log(response)
-  response.data.forEach(item => {
-    cards.append(createCard(response.data))
-  })
+  cards.appendChild(createCard(response.data))
 })
 .catch(error => {
   console.log('FRIENDS DATA ERROR:', error)
 })
+
+//end loop
+}
 /* Step 3: Create a function that accepts a single object as its only argument, ✅
           Using DOM methods and properties, create a component that will return the following DOM element: ✅
 
